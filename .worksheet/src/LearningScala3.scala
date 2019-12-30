@@ -11,14 +11,24 @@ object LearningScala3 {;import org.scalaide.worksheet.runtime.library.WorksheetS
   
   println(squareIt(2));$skip(24); 
   
-  println(cubeIt(2));$skip(124); 
+  println(cubeIt(2));$skip(54); 
+  
+  def power(x1: Double) : Double ={ math.sqrt(x1)};System.out.println("""power: (x1: Double)Double""");$skip(21); 
+  
+  print(power(2));$skip(124); 
   
   // Functions can take other functions as parameters
   
   def transformInt(x: Int, f: Int => Int) : Int = {
   	f(x)
-  };System.out.println("""transformInt: (x: Int, f: Int => Int)Int""");$skip(42); 
-  
+  };System.out.println("""transformInt: (x: Int, f: Int => Int)Int""");$skip(77); 
+    
+  def newtransform(x:Double, f1:Double=> Double) :Double ={
+  f1(x)
+  };System.out.println("""newtransform: (x: Double, f1: Double => Double)Double""");$skip(37); 
+   val res = newtransform(2.0,power);System.out.println("""res  : Double = """ + $show(res ));$skip(14); 
+   print(res);$skip(43); 
+   
   val result = transformInt(2, cubeIt);System.out.println("""result  : Int = """ + $show(result ));$skip(19); 
   println (result);$skip(209); val res$0 = 
   
@@ -29,7 +39,7 @@ object LearningScala3 {;import org.scalaide.worksheet.runtime.library.WorksheetS
   
   transformInt(10, x => x / 2);System.out.println("""res1: Int = """ + $show(res$1));$skip(50); val res$2 = 
   
-  transformInt(2, x => {val y = x * 2; y * y});System.out.println("""res2: Int = """ + $show(res$2));$skip(387); 
+  transformInt(2, x => {val y = x * 2; y * y});System.out.println("""res2: Int = """ + $show(res$2));$skip(397); 
   
   // This is really important!
   
@@ -38,22 +48,23 @@ object LearningScala3 {;import org.scalaide.worksheet.runtime.library.WorksheetS
   // Write a function that converts a string to upper-case, and use that function of a few test strings.
   // Then, do the same thing using a function literal instead of a separate, named function.
    
-    val str="my name si nishant";System.out.println("""str  : String = """ + $show(str ));$skip(34); 
+    val str : String ="my name si nishant";System.out.println("""str  : String = """ + $show(str ));$skip(34); 
     val result1=str.toUpperCase();System.out.println("""result1  : String = """ + $show(result1 ));$skip(21); 
-    println(result1);$skip(93); 
+    println(result1);$skip(70); 
     
-    def conv (str:String){
-    val result2=str.toUpperCase()
-    println(result2)
-    };System.out.println("""conv: (str: String)Unit""");$skip(37); 
-    conv("my name is nishant kumar");$skip(88); 
+    def conv (st:String) : String = {
+    st.toUpperCase()
+    };System.out.println("""conv: (st: String)String""");$skip(23); 
+    println(conv(str));$skip(399); 
     
-  def transformString(x1: String, f1: String => String) : String = {
-  	f1(x1)
-  };System.out.println("""transformString: (x1: String, f1: String => String)String""");$skip(62); 
-   val result3 = transformString(str,str1=>str.toUpperCase());System.out.println("""result3  : String = """ + $show(result3 ));$skip(21); 
-   println (result3)}
+    
+ // taking function as paramenter
+ 
+ val str1: String ="To bridge the gap between every method returning something and not having anything useful to return, there's Unit. This type is an AnyVal, which means it isn't allocated on the heap, unless it gets boxed or is the type of a field on an object. Furthermore, it has only one value, whose literal is (). That is, you could write this:";System.out.println("""str1  : String = """ + $show(str1 ));$skip(79); 
+ def transformString(xn: String, f5: String => String) : String = {
+ f5(xn)
+ };System.out.println("""transformString: (xn: String, f5: String => String)String""");$skip(54); 
+   val resultst : String = transformString(str1,conv);System.out.println("""resultst  : String = """ + $show(resultst ));$skip(19); 
+println (resultst)}
   
-
-    
 }

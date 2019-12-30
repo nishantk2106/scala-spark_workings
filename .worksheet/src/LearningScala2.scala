@@ -2,8 +2,8 @@ object LearningScala2 {;import org.scalaide.worksheet.runtime.library.WorksheetS
   // Flow control
   
   // If / else syntax
-  if (1 > 3) println("Impossible!") else println("The world makes sense.");$skip(96); 
-  
+  if (1 > 3) println("Impossible!") else println("The world makes sense.");$skip(59); 
+  if (5<15) println("possible") else println("impossible");$skip(93); 
   if (1 > 3) {
   	println("Impossible!")
   } else {
@@ -17,23 +17,35 @@ object LearningScala2 {;import org.scalaide.worksheet.runtime.library.WorksheetS
   	case 2 => println("Two")
   	case 3 => println("Three")
   	case _ => println("Something else")
- 	};$skip(87); 
+ 	};$skip(39); 
  	
+ 	// case study :
+ 	val num1  = 'x';System.out.println("""num1  : Char = """ + $show(num1 ));$skip(73); 
+ 	num1 match {
+ 	 case 'x' => print(1)
+ 	 case 'y' => print("five")
+ 	 };$skip(88); 
+ 	 
  	// For loops
  	for (x <- 1 to 4) {
  		val squared = x * x
  		println(squared)
- 	};$skip(81); 
-                                                  
+ 	};$skip(105); 
+// for loops
+  for (x <-1 to 10){
+   val cube =math.pow(x,3)
+   val cube1= cube -1
+   println(cube1)
+  };$skip(29); 
   // While loops
-  var x = 10;System.out.println("""x  : Int = """ + $show(x ));$skip(47); 
+  var x = 5;System.out.println("""x  : Int = """ + $show(x ));$skip(47); 
   while (x >= 0) {
   	println(x)
   	x -= 1
-  };$skip(59); 
+  };$skip(60); 
                                                   
-  x = 0;$skip(42); 
-  do { println(x); x+=1 } while (x <= 10);$skip(154); val res$0 = 
+  x = 11;$skip(41); 
+  do { println(x); x+=1 } while (x < 11);$skip(154); val res$0 = 
                                                   
    // Expressions
    // "Returns" the final value in a block automatically

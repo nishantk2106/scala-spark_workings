@@ -5,9 +5,19 @@ import org.apache.spark._
 /** Create a RDD of lines from a text file, and keep count of
  *  how often each word appears.
  */
-object wordcount {
+object word {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(447); 
   
-  def main(args: Array[String]) {
+  def main( args :Array[String]){
+    val conf = new SparkConf().setAppname("ord")
+    conf.setMaster("local[*]")
+    val sc =new SparkContext(conf)
+    val input =sc.textFile("book.txt")
+    val words=input.flatMap(line=>line.split(' '))
+    println(words)
+  };System.out.println("""main: (args: Array[String])Unit""")}
+}
+  
+  /*def main(args: Array[String]) {
       // Set up a SparkContext named WordCount that runs locally using
       // all available cores.
       val conf = new SparkConf().setAppName("WordCount")
@@ -31,5 +41,5 @@ object wordcount {
       }
       
       sc.stop()
-    }  
+    }
 }

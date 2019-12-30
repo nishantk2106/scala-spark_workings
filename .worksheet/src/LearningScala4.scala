@@ -1,4 +1,4 @@
-object LearningScala4 {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(285); 
+object LearningScala4 {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(284); 
   // Data structures
   
   // Tuples (Also really common with Spark!!)
@@ -6,7 +6,7 @@ object LearningScala4 {;import org.scalaide.worksheet.runtime.library.WorksheetS
   // Often thought of as database fields, or columns.
   // Useful for passing around entire rows of data.
   
-  val captainStuff = ("Picard", "Enterprise-D", "NCC-1701-D");System.out.println("""captainStuff  : (String, String, String) = """ + $show(captainStuff ));$skip(24); 
+  val captainStuff = ("Picard","Enterprise-D", "NCC-1701-D");System.out.println("""captainStuff  : (String, String, String) = """ + $show(captainStuff ));$skip(24); 
   println(captainStuff);$skip(94); 
   
   // You refer to individual fields with their ONE-BASED index:
@@ -30,8 +30,8 @@ object LearningScala4 {;import org.scalaide.worksheet.runtime.library.WorksheetS
  val shipList = List("Enterprise", "Defiant", "Voyager", "Deep Space Nine","head","tail","1","2","3");System.out.println("""shipList  : List[String] = """ + $show(shipList ));$skip(101); 
  
  // Access individual members using () with ZERO-BASED index (confused yet?)
- println(shipList(1));$skip(93); 
- 
+ println(shipList(1));$skip(164); 
+ //list starts from zero index while tuples strats with the index of one
  // head and tail give you the first item, and the remaining ones.
  println(shipList.head);$skip(24); 
  println(shipList.tail);$skip(72); 
@@ -41,13 +41,18 @@ object LearningScala4 {;import org.scalaide.worksheet.runtime.library.WorksheetS
  for (ship <- shipList) {println(ship)};$skip(187); 
  
  // Let's apply a function literal to a list! map() can be used to apply any function to every item in a collection.
-val backwardShips = shipList.map( (ship: String) => {ship.reverse});System.out.println("""backwardShips  : List[String] = """ + $show(backwardShips ));$skip(45); 
- for (ship <- backwardShips) {println(ship)};$skip(183); 
-                                                  
+val backwardShips = shipList.map( (ship: String) => {ship.reverse});System.out.println("""backwardShips  : List[String] = """ + $show(backwardShips ));$skip(68); 
+
+val back = shipList.map ( (ship1 :String)=> {ship1.toUpperCase()});System.out.println("""back  : List[String] = """ + $show(back ));$skip(45); 
+ for (ship <- backwardShips) {println(ship)};$skip(38); 
+  for(ship1 <-back) { println(ship1)};$skip(132); 
 // reduce() can be used to combine together all the items in a collection using some function.
 val numberList = List(1, 2, 3, 4, 5);System.out.println("""numberList  : List[Int] = """ + $show(numberList ));$skip(56); 
 val sum = numberList.reduce( (x: Int, y: Int) => x + y);System.out.println("""sum  : Int = """ + $show(sum ));$skip(13); 
-println(sum);$skip(158); 
+println(sum);$skip(52); 
+val multiple=numberList.reduce((x:Int,y :Int)=>x*y);System.out.println("""multiple  : Int = """ + $show(multiple ));$skip(16); 
+print(multiple);$skip(159); 
+
 
 // filter() can remove stuff you don't want. Here we'll introduce wildcard syntax while we're at it.
 val iHateFives = numberList.filter( (x: Int) => x != 5);System.out.println("""iHateFives  : List[Int] = """ + $show(iHateFives ));$skip(44); 
@@ -73,13 +78,13 @@ val hasThree = iHateThrees.contains(3);System.out.println("""hasThree  : Boolean
 // Useful for key/value lookups on distinct keys
 // Like dictionaries in other languages
 
-val shipMap = Map("Kirk" -> "Enterprise", "Picard" -> "Enterprise-D", "Sisko" -> "Deep Space Nine", "Janeway" -> "Voyager");System.out.println("""shipMap  : scala.collection.immutable.Map[String,String] = """ + $show(shipMap ));$skip(28); 
-println(shipMap("Janeway"));$skip(66); 
+val shipMap = Map("Kirk" -> "Enterprise", "Picard" -> "Enterprise-D", "Sisko" -> "Deep Space Nine", "Janeway" -> "Voyager");System.out.println("""shipMap  : scala.collection.immutable.Map[String,String] = """ + $show(shipMap ));$skip(25); 
+println(shipMap("Kirk"));$skip(66); 
 
 // Dealing with missing keys
 println(shipMap.contains("Archer"));$skip(67); 
 
-val archersShip = util.Try(shipMap("Archer")) getOrElse "Unknown";System.out.println("""archersShip  : String = """ + $show(archersShip ));$skip(21); 
+val archersShip = util.Try(shipMap("Picard")) getOrElse "Unknown";System.out.println("""archersShip  : String = """ + $show(archersShip ));$skip(21); 
 println(archersShip);$skip(878); 
 
 // EXERCISE
@@ -92,7 +97,14 @@ println(archersShip);$skip(878);
 // There is MUCH more to learn about Scala. We didn't cover many other collection types, including mutable collections.
 // And we didn't even touch on object-oriented Scala. The book "Learning Scala" from O'Reilly is great if you want to
 // go into more depth - but you've got enough to get through this course for now.
-val numberList1 = List(1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20);System.out.println("""numberList1  : List[Int] = """ + $show(numberList1 ));$skip(60); 
-val divbythree = numberList1.filter( (x1: Int) => x1%3== 0);System.out.println("""divbythree  : List[Int] = """ + $show(divbythree ))}
+val numberList1 = List(1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20);System.out.println("""numberList1  : List[Int] = """ + $show(numberList1 ));$skip(59); 
+for(i<-1 to 20){
+    if(i%3==0)
+    {
+    println(i)
+    }
+    };$skip(60); 
+ val divbythree= numberList1.filter((x:Int)=> x%3==0);System.out.println("""divbythree  : List[Int] = """ + $show(divbythree ));$skip(21); 
+	println(divbythree)}
 
 }

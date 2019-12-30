@@ -4,7 +4,8 @@ object LearningScala2 {
   // If / else syntax
   if (1 > 3) println("Impossible!") else println("The world makes sense.")
                                                   //> The world makes sense.
-  
+  if (5<15) println("possible") else println("impossible")
+                                                  //> possible
   if (1 > 3) {
   	println("Impossible!")
   } else {
@@ -20,6 +21,13 @@ object LearningScala2 {
   	case _ => println("Something else")
  	}                                         //> Three
  	
+ 	// case study :
+ 	val num1  = 'x'                           //> num1  : Char = x
+ 	num1 match {
+ 	 case 'x' => print(1)
+ 	 case 'y' => print("five")
+ 	 }                                        //> 1
+ 	 
  	// For loops
  	for (x <- 1 to 4) {
  		val squared = x * x
@@ -28,36 +36,35 @@ object LearningScala2 {
                                                   //| 4
                                                   //| 9
                                                   //| 16
-                                                  
+// for loops
+  for (x <-1 to 10){
+   val cube =math.pow(x,3)
+   val cube1= cube -1
+   println(cube1)
+  }                                               //> 0.0
+                                                  //| 7.0
+                                                  //| 26.0
+                                                  //| 63.0
+                                                  //| 124.0
+                                                  //| 215.0
+                                                  //| 342.0
+                                                  //| 511.0
+                                                  //| 728.0
+                                                  //| 999.0
   // While loops
-  var x = 10                                      //> x  : Int = 10
+  var x = 5                                       //> x  : Int = 5
   while (x >= 0) {
   	println(x)
   	x -= 1
-  }                                               //> 10
-                                                  //| 9
-                                                  //| 8
-                                                  //| 7
-                                                  //| 6
-                                                  //| 5
+  }                                               //> 5
                                                   //| 4
                                                   //| 3
                                                   //| 2
                                                   //| 1
                                                   //| 0
                                                   
-  x = 0
-  do { println(x); x+=1 } while (x <= 10)         //> 0
-                                                  //| 1
-                                                  //| 2
-                                                  //| 3
-                                                  //| 4
-                                                  //| 5
-                                                  //| 6
-                                                  //| 7
-                                                  //| 8
-                                                  //| 9
-                                                  //| 10
+  x = 11
+  do { println(x); x+=1 } while (x < 11)          //> 11
                                                   
    // Expressions
    // "Returns" the final value in a block automatically

@@ -6,7 +6,7 @@ object LearningScala4 {
   // Often thought of as database fields, or columns.
   // Useful for passing around entire rows of data.
   
-  val captainStuff = ("Picard", "Enterprise-D", "NCC-1701-D")
+  val captainStuff = ("Picard","Enterprise-D", "NCC-1701-D")
                                                   //> captainStuff  : (String, String, String) = (Picard,Enterprise-D,NCC-1701-D)
                                                   //| 
   println(captainStuff)                           //> (Picard,Enterprise-D,NCC-1701-D)
@@ -35,7 +35,7 @@ object LearningScala4 {
  
  // Access individual members using () with ZERO-BASED index (confused yet?)
  println(shipList(1))                             //> Defiant
- 
+ //list starts from zero index while tuples strats with the index of one
  // head and tail give you the first item, and the remaining ones.
  println(shipList.head)                           //> Enterprise
  println(shipList.tail)                           //> List(Defiant, Voyager, Deep Space Nine, head, tail, 1, 2, 3)
@@ -56,6 +56,10 @@ object LearningScala4 {
 val backwardShips = shipList.map( (ship: String) => {ship.reverse})
                                                   //> backwardShips  : List[String] = List(esirpretnE, tnaifeD, regayoV, eniN eca
                                                   //| pS peeD, daeh, liat, 1, 2, 3)
+
+val back = shipList.map ( (ship1 :String)=> {ship1.toUpperCase()})
+                                                  //> back  : List[String] = List(ENTERPRISE, DEFIANT, VOYAGER, DEEP SPACE NINE, 
+                                                  //| HEAD, TAIL, 1, 2, 3)
  for (ship <- backwardShips) {println(ship)}      //> esirpretnE
                                                   //| tnaifeD
                                                   //| regayoV
@@ -65,12 +69,24 @@ val backwardShips = shipList.map( (ship: String) => {ship.reverse})
                                                   //| 1
                                                   //| 2
                                                   //| 3
-                                                  
+  for(ship1 <-back) { println(ship1)}             //> ENTERPRISE
+                                                  //| DEFIANT
+                                                  //| VOYAGER
+                                                  //| DEEP SPACE NINE
+                                                  //| HEAD
+                                                  //| TAIL
+                                                  //| 1
+                                                  //| 2
+                                                  //| 3
 // reduce() can be used to combine together all the items in a collection using some function.
 val numberList = List(1, 2, 3, 4, 5)              //> numberList  : List[Int] = List(1, 2, 3, 4, 5)
 val sum = numberList.reduce( (x: Int, y: Int) => x + y)
                                                   //> sum  : Int = 15
 println(sum)                                      //> 15
+val multiple=numberList.reduce((x:Int,y :Int)=>x*y)
+                                                  //> multiple  : Int = 120
+print(multiple)                                   //> 120
+
 
 // filter() can remove stuff you don't want. Here we'll introduce wildcard syntax while we're at it.
 val iHateFives = numberList.filter( (x: Int) => x != 5)
@@ -101,14 +117,14 @@ val shipMap = Map("Kirk" -> "Enterprise", "Picard" -> "Enterprise-D", "Sisko" ->
                                                   //> shipMap  : scala.collection.immutable.Map[String,String] = Map(Kirk -> Ente
                                                   //| rprise, Picard -> Enterprise-D, Sisko -> Deep Space Nine, Janeway -> Voyage
                                                   //| r)
-println(shipMap("Janeway"))                       //> Voyager
+println(shipMap("Kirk"))                          //> Enterprise
 
 // Dealing with missing keys
 println(shipMap.contains("Archer"))               //> false
 
-val archersShip = util.Try(shipMap("Archer")) getOrElse "Unknown"
-                                                  //> archersShip  : String = Unknown
-println(archersShip)                              //> Unknown
+val archersShip = util.Try(shipMap("Picard")) getOrElse "Unknown"
+                                                  //> archersShip  : String = Enterprise-D
+println(archersShip)                              //> Enterprise-D
 
 // EXERCISE
 // Create a list of the numbers 1-20; your job is to print out numbers that are evenly divisible by three. (Scala's
@@ -123,7 +139,19 @@ println(archersShip)                              //> Unknown
 val numberList1 = List(1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12,13,14,15,16,17,18,19,20)
                                                   //> numberList1  : List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
                                                   //| 14, 15, 16, 17, 18, 19, 20)
-val divbythree = numberList1.filter( (x1: Int) => x1%3== 0)
+for(i<-1 to 20){
+    if(i%3==0)
+    {
+    println(i)
+    }                                             //> 3
+                                                  //| 6
+                                                  //| 9
+                                                  //| 12
+                                                  //| 15
+                                                  //| 18
+    }
+ val divbythree= numberList1.filter((x:Int)=> x%3==0)
                                                   //> divbythree  : List[Int] = List(3, 6, 9, 12, 15, 18)
+	println(divbythree)                       //> List(3, 6, 9, 12, 15, 18)
 
 }
